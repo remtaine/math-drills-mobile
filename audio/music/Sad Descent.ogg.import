@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Sad Descent.ogg-7842a2e3e7cd79982b18ad2a6c32f099.oggstr"
+
+[deps]
+
+source_file="res://audio/music/Sad Descent.ogg"
+dest_files=[ "res://.import/Sad Descent.ogg-7842a2e3e7cd79982b18ad2a6c32f099.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

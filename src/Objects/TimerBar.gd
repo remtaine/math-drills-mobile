@@ -13,7 +13,7 @@ func _ready() -> void:
 #func _physics_process(delta: float) -> void:
 	
 func reduce_time(v : int) -> void:
-	if value - v < 0:
+	if value <= 0:
 		emit_signal("times_up")
 	else:
 		value -= v
@@ -28,7 +28,13 @@ func _on_EquationHandler_equation_set(answer, operation) -> void:
 
 
 func _on_Score_level_up() -> void:
-	$Timer.wait_time -= 0.003
+	if $Timer.wait_time > 0.12:
+		$Timer.wait_time -= 0.006
+	elif $Timer.wait_time > 0.09:
+		$Timer.wait_time -= 0.004
+	elif $Timer.wait_time > 0.002:
+		$Timer.wait_time -= 0.002
+		
 	print("WAIT TIME IS NOW ", $Timer.wait_time)
 
 func _on_Choices_wrong_answer() -> void:

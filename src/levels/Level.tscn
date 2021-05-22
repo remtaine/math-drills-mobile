@@ -164,7 +164,7 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="Main/Question/TimerBar"]
-wait_time = 0.1
+wait_time = 0.15
 autostart = true
 
 [node name="Calculator" type="Control" parent="Main"]
@@ -492,8 +492,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="equation_set" from="Main/Question/EquationHandler" to="Main/Question/TimerBar" method="_on_EquationHandler_equation_set"]
+[node name="Audio" type="Node" parent="."]
+
+[node name="Theme" type="AudioStreamPlayer" parent="Audio"]
+
 [connection signal="equation_set" from="Main/Question/EquationHandler" to="Main/Choices" method="_on_EquationHandler_equation_set"]
+[connection signal="equation_set" from="Main/Question/EquationHandler" to="Main/Question/TimerBar" method="_on_EquationHandler_equation_set"]
 [connection signal="times_up" from="Main/Question/TimerBar" to="." method="_on_TimerBar_times_up"]
 [connection signal="timeout" from="Main/Question/TimerBar/Timer" to="Main/Question/TimerBar" method="_on_Timer_timeout"]
 [connection signal="next_equation" from="Main/Choices" to="UILayer/UI/Score" method="_on_Choices_next_equation"]
@@ -503,4 +507,5 @@ __meta__ = {
 [connection signal="pressed" from="Main/Choices/Choice2" to="Main/Choices" method="_on_Choice2_pressed"]
 [connection signal="pressed" from="Main/Choices/Choice3" to="Main/Choices" method="_on_Choice3_pressed"]
 [connection signal="pressed" from="Main/Choices/Choice4" to="Main/Choices" method="_on_Choice4_pressed"]
+[connection signal="level_up" from="UILayer/UI/Score" to="Main/Question/EquationHandler" method="_on_Score_level_up"]
 [connection signal="level_up" from="UILayer/UI/Score" to="Main/Question/TimerBar" method="_on_Score_level_up"]

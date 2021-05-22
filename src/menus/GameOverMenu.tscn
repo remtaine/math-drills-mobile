@@ -228,6 +228,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Audio" type="Node" parent="."]
+
+[node name="Theme" type="AudioStreamPlayer" parent="Audio"]
+
 [connection signal="move_board" from="Main/1stLayer/Buttons" to="." method="move_board"]
 [connection signal="pressed" from="Main/1stLayer/Buttons/Start" to="Main/1stLayer/Buttons" method="_on_Start_pressed"]
 [connection signal="pressed" from="Main/1stLayer/Buttons/Menu" to="Main/1stLayer/Buttons" method="_on_Menu_pressed"]
