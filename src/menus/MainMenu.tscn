@@ -1,0 +1,442 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://images/backgrounds/blackboard.jpg" type="Texture" id=1]
+[ext_resource path="res://resources/preset fonts/FontTitle.tres" type="DynamicFont" id=2]
+[ext_resource path="res://images/backgrounds/frame.png" type="Texture" id=3]
+[ext_resource path="res://resources/preset fonts/FontEquation.tres" type="DynamicFont" id=4]
+[ext_resource path="res://resources/preset fonts/FontChoices.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/UI/ButtonsHandler.gd" type="Script" id=6]
+[ext_resource path="res://src/menus/MainMenu.gd" type="Script" id=7]
+[ext_resource path="res://resources/preset fonts/FontNumpad.tres" type="DynamicFont" id=8]
+[ext_resource path="res://resources/preset fonts/FontScore.tres" type="DynamicFont" id=9]
+[ext_resource path="res://src/menus/2ndLayerMenu.gd" type="Script" id=10]
+
+[sub_resource type="Animation" id=1]
+resource_name = "1to2"
+length = 0.4
+step = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -1080, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Main:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -1080, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "setup"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Main:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blackboard" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1080.0
+mouse_filter = 0
+texture = ExtResource( 1 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Blackboard"]
+autoplay = "setup"
+anims/1to2 = SubResource( 1 )
+anims/setup = SubResource( 2 )
+
+[node name="Main" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1stLayer" type="Control" parent="Main"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title1" type="Label" parent="Main/1stLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -477.628
+margin_top = 287.829
+margin_right = 297.372
+margin_bottom = 611.829
+rect_rotation = -8.29494
+mouse_filter = 1
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1.1, 1.1, 1.1, 1 )
+text = "Math"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title2" type="Label" parent="Main/1stLayer/Title1"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -430.949
+margin_top = 278.9
+margin_right = 223.051
+margin_bottom = 602.9
+rect_scale = Vector2( 0.8, 1 )
+mouse_filter = 1
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1.1, 1.1, 1.1, 1 )
+text = "Quiz"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="Main/1stLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -540.0
+margin_top = -26.7379
+margin_right = 540.0
+margin_bottom = 1893.26
+custom_constants/separation = 40
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="Main/1stLayer/Buttons"]
+margin_right = 1080.0
+margin_bottom = 213.0
+mouse_filter = 1
+custom_styles/hover = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 5 )
+text = "Start"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="Button" parent="Main/1stLayer/Buttons"]
+margin_top = 253.0
+margin_right = 1080.0
+margin_bottom = 466.0
+mouse_filter = 1
+custom_styles/hover = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 5 )
+text = "How To"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Button" parent="Main/1stLayer/Buttons"]
+margin_top = 506.0
+margin_right = 1080.0
+margin_bottom = 719.0
+mouse_filter = 1
+custom_styles/hover = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 5 )
+text = "Credits"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="2ndLayer" type="Control" parent="Main"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1080.0
+margin_right = 1080.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="VBoxContainer" parent="Main/2ndLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 50
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Main/2ndLayer/Credits"]
+margin_top = 160.0
+margin_right = 1080.0
+margin_bottom = 393.0
+custom_fonts/font = ExtResource( 4 )
+text = "Credits"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator1" type="HSeparator" parent="Main/2ndLayer/Credits"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 443.0
+margin_right = 1080.0
+margin_bottom = 493.0
+custom_constants/separation = 50
+
+[node name="Programming" type="Label" parent="Main/2ndLayer/Credits"]
+margin_top = 543.0
+margin_right = 1080.0
+margin_bottom = 702.0
+custom_fonts/font = ExtResource( 9 )
+text = "Programming by:
+Remtaine"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Graphics" type="Label" parent="Main/2ndLayer/Credits"]
+margin_top = 752.0
+margin_right = 1080.0
+margin_bottom = 911.0
+custom_fonts/font = ExtResource( 9 )
+text = "Graphics from:
+Pixabay"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Audio" type="Label" parent="Main/2ndLayer/Credits"]
+margin_top = 961.0
+margin_right = 1080.0
+margin_bottom = 1120.0
+custom_fonts/font = ExtResource( 9 )
+text = "Audio by:
+KenneyNL"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator2" type="HSeparator" parent="Main/2ndLayer/Credits"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 1170.0
+margin_right = 1080.0
+margin_bottom = 1240.0
+custom_constants/separation = 70
+
+[node name="Version" type="Label" parent="Main/2ndLayer/Credits"]
+margin_top = 1290.0
+margin_right = 1080.0
+margin_bottom = 1449.0
+custom_fonts/font = ExtResource( 9 )
+text = "Version:
+0.2.0"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator3" type="HSeparator" parent="Main/2ndLayer/Credits"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 1499.0
+margin_right = 1080.0
+margin_bottom = 1529.0
+custom_constants/separation = 30
+
+[node name="Back" type="Button" parent="Main/2ndLayer/Credits"]
+margin_top = 1579.0
+margin_right = 1080.0
+margin_bottom = 1760.0
+mouse_filter = 1
+custom_styles/hover = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 8 )
+text = "Back"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="VBoxContainer" parent="Main/2ndLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 50
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Main/2ndLayer/Instructions"]
+margin_top = 365.0
+margin_right = 1080.0
+margin_bottom = 598.0
+custom_fonts/font = ExtResource( 4 )
+text = "How To"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator1" type="HSeparator" parent="Main/2ndLayer/Instructions"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 648.0
+margin_right = 1080.0
+margin_bottom = 698.0
+custom_constants/separation = 50
+
+[node name="Solve" type="Label" parent="Main/2ndLayer/Instructions"]
+margin_top = 748.0
+margin_right = 1080.0
+margin_bottom = 826.0
+custom_fonts/font = ExtResource( 9 )
+text = "Solve the equation!"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Press" type="Label" parent="Main/2ndLayer/Instructions"]
+margin_top = 876.0
+margin_right = 1080.0
+margin_bottom = 1035.0
+custom_fonts/font = ExtResource( 9 )
+text = "Press the correct
+answer!"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Answer" type="Label" parent="Main/2ndLayer/Instructions"]
+margin_top = 1085.0
+margin_right = 1080.0
+margin_bottom = 1244.0
+custom_fonts/font = ExtResource( 9 )
+text = "Do as many as you can before time runs out!"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator3" type="HSeparator" parent="Main/2ndLayer/Instructions"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 1294.0
+margin_right = 1080.0
+margin_bottom = 1324.0
+custom_constants/separation = 30
+
+[node name="Back" type="Button" parent="Main/2ndLayer/Instructions"]
+margin_top = 1374.0
+margin_right = 1080.0
+margin_bottom = 1555.0
+mouse_filter = 1
+custom_styles/hover = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 8 )
+text = "Back"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="UILayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Frame" type="TextureRect" parent="UILayer/UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_pressed" from="Main/1stLayer/Buttons" to="Main/2ndLayer" method="_on_Buttons_button_pressed"]
+[connection signal="move_board" from="Main/1stLayer/Buttons" to="." method="move_board"]
+[connection signal="pressed" from="Main/1stLayer/Buttons/Start" to="Main/1stLayer/Buttons" method="_on_Start_pressed"]
+[connection signal="pressed" from="Main/1stLayer/Buttons/Instructions" to="Main/1stLayer/Buttons" method="_on_Instructions_pressed"]
+[connection signal="pressed" from="Main/1stLayer/Buttons/Credits" to="Main/1stLayer/Buttons" method="_on_Credits_pressed"]
+[connection signal="move_board" from="Main/2ndLayer" to="." method="move_board"]
+[connection signal="pressed" from="Main/2ndLayer/Credits/Back" to="Main/2ndLayer" method="_on_Back_pressed"]
+[connection signal="pressed" from="Main/2ndLayer/Instructions/Back" to="Main/2ndLayer" method="_on_Back_pressed"]

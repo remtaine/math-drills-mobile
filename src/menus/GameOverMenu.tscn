@@ -1,0 +1,233 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://images/backgrounds/blackboard.jpg" type="Texture" id=1]
+[ext_resource path="res://resources/preset fonts/FontTitle.tres" type="DynamicFont" id=2]
+[ext_resource path="res://images/backgrounds/frame.png" type="Texture" id=3]
+[ext_resource path="res://src/UI/GameOverButtonsHandler.gd" type="Script" id=4]
+[ext_resource path="res://resources/preset fonts/FontChoices.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/menus/GameOverMenu.gd" type="Script" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "1to2"
+length = 0.4
+step = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -1080, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Main:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -1080, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "setup"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Main:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="GameOverMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blackboard" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1080.0
+mouse_filter = 0
+texture = ExtResource( 1 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Blackboard"]
+autoplay = "setup"
+anims/1to2 = SubResource( 1 )
+anims/setup = SubResource( 2 )
+
+[node name="Main" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1stLayer" type="Control" parent="Main"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title1" type="Label" parent="Main/1stLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -452.78
+margin_top = -808.817
+margin_right = 374.22
+margin_bottom = -484.817
+mouse_filter = 1
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1.1, 1.1, 1.1, 1 )
+text = "Game"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title2" type="Label" parent="Main/1stLayer/Title1"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -500.726
+margin_top = 276.477
+margin_right = 230.274
+margin_bottom = 600.477
+rect_scale = Vector2( 0.8, 1 )
+mouse_filter = 1
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1.1, 1.1, 1.1, 1 )
+text = "Over"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="Main/1stLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -540.0
+margin_top = -195.362
+margin_right = 540.0
+margin_bottom = 817.638
+custom_constants/separation = 40
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="Main/1stLayer/Buttons"]
+margin_right = 1080.0
+margin_bottom = 417.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 1.1, 1.1, 1.1, 1 )
+text = "Score:
+0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="Main/1stLayer/Buttons"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 457.0
+margin_right = 1080.0
+margin_bottom = 457.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="Main/1stLayer/Buttons"]
+margin_top = 497.0
+margin_right = 1080.0
+margin_bottom = 710.0
+mouse_filter = 1
+custom_styles/hover = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 5 )
+text = "Restart"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="Button" parent="Main/1stLayer/Buttons"]
+margin_top = 750.0
+margin_right = 1080.0
+margin_bottom = 963.0
+mouse_filter = 1
+custom_styles/hover = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 5 )
+text = "Menu"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="UILayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Frame" type="TextureRect" parent="UILayer/UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="move_board" from="Main/1stLayer/Buttons" to="." method="move_board"]
+[connection signal="pressed" from="Main/1stLayer/Buttons/Start" to="Main/1stLayer/Buttons" method="_on_Start_pressed"]
+[connection signal="pressed" from="Main/1stLayer/Buttons/Menu" to="Main/1stLayer/Buttons" method="_on_Menu_pressed"]

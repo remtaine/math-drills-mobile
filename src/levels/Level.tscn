@@ -1,0 +1,506 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://images/backgrounds/blackboard.jpg" type="Texture" id=1]
+[ext_resource path="res://resources/preset fonts/FontUI.tres" type="DynamicFont" id=2]
+[ext_resource path="res://images/backgrounds/frame.png" type="Texture" id=3]
+[ext_resource path="res://resources/preset fonts/FontEquation.tres" type="DynamicFont" id=4]
+[ext_resource path="res://resources/preset fonts/FontChoices.tres" type="DynamicFont" id=5]
+[ext_resource path="res://images/Line v1.png" type="Texture" id=6]
+[ext_resource path="res://src/Objects/TimerBar.gd" type="Script" id=7]
+[ext_resource path="res://resources/preset fonts/FontNumpad.tres" type="DynamicFont" id=8]
+[ext_resource path="res://resources/preset fonts/FontScore.tres" type="DynamicFont" id=9]
+[ext_resource path="res://src/levels/Level.gd" type="Script" id=10]
+[ext_resource path="res://src/handlers/ChoicesHandler.gd" type="Script" id=11]
+[ext_resource path="res://src/handlers/EquationHandler.gd" type="Script" id=12]
+[ext_resource path="res://src/UI/TextScore.gd" type="Script" id=13]
+
+[sub_resource type="Animation" id=1]
+resource_name = "1to2"
+length = 0.4
+step = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -1080, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "setup"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="Level" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blackboard" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1080.0
+mouse_filter = 0
+texture = ExtResource( 1 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Blackboard"]
+autoplay = "setup"
+anims/1to2 = SubResource( 1 )
+anims/setup = SubResource( 2 )
+
+[node name="Main" type="Node" parent="."]
+
+[node name="Question" type="Control" parent="Main"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -540.0
+margin_top = -960.0
+margin_right = 540.0
+margin_bottom = 960.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EquationHandler" type="HBoxContainer" parent="Main/Question"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -540.0
+margin_top = -1344.15
+margin_right = 540.0
+margin_bottom = 575.846
+alignment = 1
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Num1" type="Label" parent="Main/Question/EquationHandler"]
+margin_left = 275.0
+margin_top = 843.0
+margin_right = 471.0
+margin_bottom = 1076.0
+mouse_filter = 0
+custom_fonts/font = ExtResource( 4 )
+text = "12"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Symbol" type="Label" parent="Main/Question/EquationHandler"]
+margin_left = 475.0
+margin_top = 843.0
+margin_right = 604.0
+margin_bottom = 1076.0
+mouse_filter = 0
+custom_fonts/font = ExtResource( 4 )
+text = "x"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Num2" type="Label" parent="Main/Question/EquationHandler"]
+margin_left = 608.0
+margin_top = 843.0
+margin_right = 804.0
+margin_bottom = 1076.0
+mouse_filter = 0
+custom_fonts/font = ExtResource( 4 )
+text = "12"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerBar" type="TextureProgress" parent="Main/Question"]
+margin_left = 122.84
+margin_top = 740.764
+margin_right = 947.84
+margin_bottom = 910.764
+rect_rotation = -1.0
+rect_scale = Vector2( 1, 0.5 )
+rect_pivot_offset = Vector2( 412.5, 0 )
+mouse_filter = 0
+value = 50.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 6 )
+fill_mode = 6
+tint_under = Color( 0.172549, 0.160784, 0.180392, 0.862745 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Main/Question/TimerBar"]
+wait_time = 0.1
+autostart = true
+
+[node name="Calculator" type="Control" parent="Main"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -540.0
+margin_top = -960.0
+margin_right = 540.0
+margin_bottom = 960.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Numpad" type="GridContainer" parent="Main/Calculator"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -399.0
+margin_top = -14.2601
+margin_right = 399.0
+margin_bottom = 865.74
+custom_constants/vseparation = 40
+custom_constants/hseparation = 200
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Choice1" type="Label" parent="Main/Calculator/Numpad"]
+margin_right = 164.0
+margin_bottom = 175.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 8 )
+text = "1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Choice2" type="Label" parent="Main/Calculator/Numpad"]
+margin_left = 364.0
+margin_right = 485.0
+margin_bottom = 175.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 8 )
+text = "2"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Choice3" type="Label" parent="Main/Calculator/Numpad"]
+margin_left = 685.0
+margin_right = 798.0
+margin_bottom = 175.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 8 )
+text = "3"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Choice4" type="Label" parent="Main/Calculator/Numpad"]
+margin_top = 215.0
+margin_right = 164.0
+margin_bottom = 390.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 8 )
+text = "4"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Choice5" type="Label" parent="Main/Calculator/Numpad"]
+margin_left = 364.0
+margin_top = 215.0
+margin_right = 485.0
+margin_bottom = 390.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 8 )
+text = "5"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Choice6" type="Label" parent="Main/Calculator/Numpad"]
+margin_left = 685.0
+margin_top = 215.0
+margin_right = 798.0
+margin_bottom = 390.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 8 )
+text = "6"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Choice7" type="Label" parent="Main/Calculator/Numpad"]
+margin_top = 430.0
+margin_right = 164.0
+margin_bottom = 605.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 8 )
+text = "7"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Choice8" type="Label" parent="Main/Calculator/Numpad"]
+margin_left = 364.0
+margin_top = 430.0
+margin_right = 485.0
+margin_bottom = 605.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 8 )
+text = "8"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Choice9" type="Label" parent="Main/Calculator/Numpad"]
+margin_left = 685.0
+margin_top = 430.0
+margin_right = 798.0
+margin_bottom = 605.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 8 )
+text = "9"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChoiceBack" type="Label" parent="Main/Calculator/Numpad"]
+margin_top = 645.0
+margin_right = 164.0
+margin_bottom = 820.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 8 )
+text = "<-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Choice0" type="Label" parent="Main/Calculator/Numpad"]
+margin_left = 364.0
+margin_top = 645.0
+margin_right = 485.0
+margin_bottom = 820.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 8 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChoiceEnter" type="Label" parent="Main/Calculator/Numpad"]
+margin_left = 685.0
+margin_top = 645.0
+margin_right = 798.0
+margin_bottom = 820.0
+mouse_filter = 1
+custom_fonts/font = ExtResource( 8 )
+text = "="
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Choices" type="GridContainer" parent="Main"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -470.0
+margin_top = 75.6648
+margin_right = 470.0
+margin_bottom = 601.665
+rect_min_size = Vector2( 840, 526 )
+rect_pivot_offset = Vector2( 420, 263 )
+rect_clip_content = true
+mouse_filter = 2
+custom_constants/vseparation = 100
+custom_constants/hseparation = 80
+columns = 2
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Choice1" type="Button" parent="Main/Choices"]
+margin_right = 420.0
+margin_bottom = 213.0
+rect_min_size = Vector2( 420, 0 )
+mouse_filter = 1
+custom_styles/hover = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 5 )
+text = "138"
+flat = true
+
+[node name="Choice2" type="Button" parent="Main/Choices"]
+margin_left = 500.0
+margin_right = 920.0
+margin_bottom = 213.0
+rect_min_size = Vector2( 420, 0 )
+mouse_filter = 1
+custom_styles/hover = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 5 )
+text = "144"
+flat = true
+
+[node name="Choice3" type="Button" parent="Main/Choices"]
+margin_top = 313.0
+margin_right = 420.0
+margin_bottom = 526.0
+rect_min_size = Vector2( 420, 0 )
+mouse_filter = 1
+custom_styles/hover = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 5 )
+text = "147"
+flat = true
+
+[node name="Choice4" type="Button" parent="Main/Choices"]
+margin_left = 500.0
+margin_top = 313.0
+margin_right = 920.0
+margin_bottom = 526.0
+rect_min_size = Vector2( 420, 0 )
+mouse_filter = 1
+custom_styles/hover = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 5 )
+text = "152"
+flat = true
+
+[node name="2ndLayer" type="Control" parent="Main"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Paused" type="Label" parent="Main/2ndLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -526.0
+margin_top = -499.357
+margin_right = 526.0
+margin_bottom = -189.357
+custom_fonts/font = ExtResource( 5 )
+text = "Paused"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="UILayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="UILayer/UI"]
+margin_left = 67.7574
+margin_top = 148.629
+margin_right = 495.757
+margin_bottom = 461.629
+custom_fonts/font = ExtResource( 9 )
+text = "Score
+ 10"
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause" type="Label" parent="UILayer/UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -148.086
+margin_top = 113.658
+margin_right = -48.0862
+margin_bottom = 423.658
+rect_scale = Vector2( 0.8, 1 )
+mouse_filter = 1
+custom_fonts/font = ExtResource( 2 )
+text = "''"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Frame" type="TextureRect" parent="UILayer/UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="equation_set" from="Main/Question/EquationHandler" to="Main/Question/TimerBar" method="_on_EquationHandler_equation_set"]
+[connection signal="equation_set" from="Main/Question/EquationHandler" to="Main/Choices" method="_on_EquationHandler_equation_set"]
+[connection signal="times_up" from="Main/Question/TimerBar" to="." method="_on_TimerBar_times_up"]
+[connection signal="timeout" from="Main/Question/TimerBar/Timer" to="Main/Question/TimerBar" method="_on_Timer_timeout"]
+[connection signal="next_equation" from="Main/Choices" to="UILayer/UI/Score" method="_on_Choices_next_equation"]
+[connection signal="next_equation" from="Main/Choices" to="Main/Question/EquationHandler" method="_on_Choices_next_equation"]
+[connection signal="wrong_answer" from="Main/Choices" to="Main/Question/TimerBar" method="_on_Choices_wrong_answer"]
+[connection signal="pressed" from="Main/Choices/Choice1" to="Main/Choices" method="_on_Choice1_pressed"]
+[connection signal="pressed" from="Main/Choices/Choice2" to="Main/Choices" method="_on_Choice2_pressed"]
+[connection signal="pressed" from="Main/Choices/Choice3" to="Main/Choices" method="_on_Choice3_pressed"]
+[connection signal="pressed" from="Main/Choices/Choice4" to="Main/Choices" method="_on_Choice4_pressed"]
+[connection signal="level_up" from="UILayer/UI/Score" to="Main/Question/TimerBar" method="_on_Score_level_up"]
