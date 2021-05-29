@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://images/backgrounds/blackboard.jpg" type="Texture" id=1]
 [ext_resource path="res://resources/preset fonts/FontPause.tres" type="DynamicFont" id=2]
@@ -143,6 +143,8 @@ tracks/2/keys = {
 [sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=7]
 
 [node name="Level" type="Control"]
 anchor_right = 1.0
@@ -642,6 +644,7 @@ margin_bottom = 297.377
 rect_min_size = Vector2( 200, 200 )
 rect_scale = Vector2( 0.7, 1 )
 rect_pivot_offset = Vector2( 100, 100 )
+custom_styles/focus = SubResource( 7 )
 custom_fonts/font = ExtResource( 2 )
 text = "''"
 flat = true

@@ -120,9 +120,9 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -429.628
-margin_top = 349.829
+margin_top = 318.679
 margin_right = 345.372
-margin_bottom = 673.829
+margin_bottom = 642.679
 rect_rotation = -8.29494
 mouse_filter = 1
 custom_fonts/font = ExtResource( 2 )
@@ -251,7 +251,6 @@ __meta__ = {
 }
 
 [node name="Credits" type="VBoxContainer" parent="Main/2ndLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 50
@@ -346,7 +345,7 @@ margin_right = 1080.0
 margin_bottom = 1432.0
 custom_fonts/font = ExtResource( 9 )
 text = "Version:
-	0.3.2"
+0.3.3"
 align = 1
 valign = 1
 autowrap = true
@@ -377,6 +376,7 @@ __meta__ = {
 }
 
 [node name="Settings" type="VBoxContainer" parent="Main/2ndLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 50

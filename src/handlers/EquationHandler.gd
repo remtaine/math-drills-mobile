@@ -28,11 +28,32 @@ func setup_equation(make_new_equation := true) -> void:
 		var c
 		var times = 0
 		
-		match 0:#randi() % 4:
+		match randi() % 4:
 			0: #ie add
 				operation = OPERATIONS.add
+				a = answer
+				b = 0
+				while answer == a + b or times > 3:
+					a = randi() % (num_ceil-num_flr) + num_flr
+					b = randi() % (num_ceil-num_flr) + num_flr
+					
+					times += 1
+					
+				answer = a + b
 			1: #ie subtract
 				operation = OPERATIONS.subtract
+				a = answer
+				b = 0
+				while answer == a + b or times > 3:
+					a = randi() % (num_ceil-num_flr) + num_flr
+					b = randi() % (num_ceil-num_flr) + num_flr
+					
+					times += 1
+					
+				answer = a + b
+				c = a
+				a = answer
+				answer = c
 			2: #ie multiply
 				operation = OPERATIONS.mutiply
 				a = answer

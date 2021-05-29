@@ -45,4 +45,4 @@ func _on_Score_level_up() -> void:
 		
 
 func _on_Choices_wrong_answer() -> void:
-	reduce_time(minus_per_second)
+	reduce_time(minus_per_second * 2)
