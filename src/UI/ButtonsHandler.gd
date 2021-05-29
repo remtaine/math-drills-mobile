@@ -10,14 +10,24 @@ func _ready() -> void:
 
 
 func _on_Start_pressed() -> void:
-	get_tree().change_scene(game_path)
+	var _error = get_tree().change_scene(game_path)
 
 
 func _on_Instructions_pressed() -> void:
 	emit_signal("move_board", Vector2.RIGHT)
 	emit_signal("button_pressed", "Instructions")
 
+
 func _on_Credits_pressed() -> void:
 	emit_signal("move_board", Vector2.RIGHT)
 	emit_signal("button_pressed", "Credits")
 		
+
+func _on_HighScores_pressed() -> void:
+	emit_signal("move_board", Vector2.RIGHT)
+	emit_signal("button_pressed", "HighScores")
+
+
+func _on_Settings_pressed() -> void:
+	emit_signal("move_board", Vector2.RIGHT)
+	emit_signal("button_pressed", "Settings")

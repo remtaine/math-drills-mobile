@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://images/backgrounds/blackboard.jpg" type="Texture" id=1]
 [ext_resource path="res://resources/preset fonts/FontTitle.tres" type="DynamicFont" id=2]
@@ -10,6 +10,12 @@
 [ext_resource path="res://resources/preset fonts/FontNumpad.tres" type="DynamicFont" id=8]
 [ext_resource path="res://resources/preset fonts/FontScore.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/menus/2ndLayerMenu.gd" type="Script" id=10]
+[ext_resource path="res://audio/music/1- Dark Fantasy Studio- Behind space (seamless).ogg" type="AudioStream" id=11]
+[ext_resource path="res://src/menus/MenuButton.gd" type="Script" id=12]
+[ext_resource path="res://src/menus/HighScoresMenu.gd" type="Script" id=13]
+[ext_resource path="res://src/menus/CheckButton.gd" type="Script" id=14]
+[ext_resource path="res://resources/preset fonts/FontSettings.tres" type="DynamicFont" id=15]
+[ext_resource path="res://src/menus/OperationsCheckbox.gd" type="Script" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "1to2"
@@ -68,6 +74,8 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="StyleBoxEmpty" id=3]
+
 [sub_resource type="StyleBoxEmpty" id=4]
 
 [node name="MainMenu" type="Control"]
@@ -112,9 +120,9 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -429.628
-margin_top = 287.829
+margin_top = 349.829
 margin_right = 345.372
-margin_bottom = 611.829
+margin_bottom = 673.829
 rect_rotation = -8.29494
 mouse_filter = 1
 custom_fonts/font = ExtResource( 2 )
@@ -136,7 +144,7 @@ rect_scale = Vector2( 0.8, 1 )
 mouse_filter = 1
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1.1, 1.1, 1.1, 1 )
-text = "Quiz"
+text = "Drillz"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -148,9 +156,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -540.0
-margin_top = -26.7379
+margin_top = -27.0
 margin_right = 540.0
-margin_bottom = 1893.26
+margin_bottom = 1893.0
 custom_constants/separation = 40
 script = ExtResource( 6 )
 __meta__ = {
@@ -159,38 +167,75 @@ __meta__ = {
 
 [node name="Start" type="Button" parent="Main/1stLayer/Buttons"]
 margin_right = 1080.0
-margin_bottom = 213.0
+margin_bottom = 175.0
+rect_pivot_offset = Vector2( 540, 87.5 )
 mouse_filter = 1
-custom_styles/focus = SubResource( 4 )
+custom_styles/focus = SubResource( 3 )
 custom_fonts/font = ExtResource( 5 )
 text = "Start"
 flat = true
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Instructions" type="Button" parent="Main/1stLayer/Buttons"]
-margin_top = 253.0
+visible = false
+margin_top = 215.0
 margin_right = 1080.0
-margin_bottom = 466.0
+margin_bottom = 390.0
+rect_pivot_offset = Vector2( 540, 87.5 )
 mouse_filter = 1
-custom_styles/focus = SubResource( 4 )
+custom_styles/focus = SubResource( 3 )
 custom_fonts/font = ExtResource( 5 )
 text = "How To"
 flat = true
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Button" parent="Main/1stLayer/Buttons"]
+margin_top = 215.0
+margin_right = 1080.0
+margin_bottom = 390.0
+rect_pivot_offset = Vector2( 540, 87.5 )
+mouse_filter = 1
+custom_styles/focus = SubResource( 3 )
+custom_fonts/font = ExtResource( 5 )
+text = "Settings"
+flat = true
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighScores" type="Button" parent="Main/1stLayer/Buttons"]
+margin_top = 430.0
+margin_right = 1080.0
+margin_bottom = 605.0
+rect_pivot_offset = Vector2( 540, 87.5 )
+mouse_filter = 1
+custom_styles/focus = SubResource( 3 )
+custom_fonts/font = ExtResource( 5 )
+text = "Scores"
+flat = true
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Credits" type="Button" parent="Main/1stLayer/Buttons"]
-margin_top = 506.0
+margin_top = 645.0
 margin_right = 1080.0
-margin_bottom = 719.0
+margin_bottom = 820.0
+rect_pivot_offset = Vector2( 540, 87.5 )
 mouse_filter = 1
-custom_styles/focus = SubResource( 4 )
+custom_styles/focus = SubResource( 3 )
 custom_fonts/font = ExtResource( 5 )
 text = "Credits"
 flat = true
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -206,6 +251,7 @@ __meta__ = {
 }
 
 [node name="Credits" type="VBoxContainer" parent="Main/2ndLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 50
@@ -215,9 +261,9 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="Main/2ndLayer/Credits"]
-margin_top = 160.0
+margin_top = 196.0
 margin_right = 1080.0
-margin_bottom = 393.0
+margin_bottom = 429.0
 custom_fonts/font = ExtResource( 4 )
 text = "Credits"
 align = 1
@@ -228,15 +274,15 @@ __meta__ = {
 
 [node name="HSeparator1" type="HSeparator" parent="Main/2ndLayer/Credits"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 443.0
+margin_top = 479.0
 margin_right = 1080.0
-margin_bottom = 493.0
-custom_constants/separation = 50
+margin_bottom = 489.0
+custom_constants/separation = 10
 
 [node name="Programming" type="Label" parent="Main/2ndLayer/Credits"]
-margin_top = 543.0
+margin_top = 539.0
 margin_right = 1080.0
-margin_bottom = 702.0
+margin_bottom = 698.0
 custom_fonts/font = ExtResource( 9 )
 text = "Programming by:
 Remtaine"
@@ -248,9 +294,9 @@ __meta__ = {
 }
 
 [node name="Graphics" type="Label" parent="Main/2ndLayer/Credits"]
-margin_top = 752.0
+margin_top = 748.0
 margin_right = 1080.0
-margin_bottom = 911.0
+margin_bottom = 907.0
 custom_fonts/font = ExtResource( 9 )
 text = "Graphics from:
 Pixabay"
@@ -261,13 +307,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Audio" type="Label" parent="Main/2ndLayer/Credits"]
-margin_top = 961.0
+[node name="Music" type="Label" parent="Main/2ndLayer/Credits"]
+margin_top = 957.0
 margin_right = 1080.0
-margin_bottom = 1120.0
+margin_bottom = 1035.0
 custom_fonts/font = ExtResource( 9 )
-text = "Audio by:
-KenneyNL"
+text = "Music by: Apmus"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFX" type="Label" parent="Main/2ndLayer/Credits"]
+margin_top = 1085.0
+margin_right = 1080.0
+margin_bottom = 1163.0
+custom_fonts/font = ExtResource( 9 )
+text = "SFX by: Janusz"
 align = 1
 valign = 1
 autowrap = true
@@ -277,18 +335,18 @@ __meta__ = {
 
 [node name="HSeparator2" type="HSeparator" parent="Main/2ndLayer/Credits"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 1170.0
+margin_top = 1213.0
 margin_right = 1080.0
-margin_bottom = 1240.0
-custom_constants/separation = 70
+margin_bottom = 1223.0
+custom_constants/separation = 10
 
 [node name="Version" type="Label" parent="Main/2ndLayer/Credits"]
-margin_top = 1290.0
+margin_top = 1273.0
 margin_right = 1080.0
-margin_bottom = 1449.0
+margin_bottom = 1432.0
 custom_fonts/font = ExtResource( 9 )
 text = "Version:
-0.2.2"
+	0.3.2"
 align = 1
 valign = 1
 autowrap = true
@@ -298,25 +356,600 @@ __meta__ = {
 
 [node name="HSeparator3" type="HSeparator" parent="Main/2ndLayer/Credits"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 1499.0
+margin_top = 1482.0
 margin_right = 1080.0
-margin_bottom = 1529.0
-custom_constants/separation = 30
+margin_bottom = 1492.0
+custom_constants/separation = 10
 
 [node name="Back" type="Button" parent="Main/2ndLayer/Credits"]
-margin_top = 1579.0
+margin_top = 1542.0
 margin_right = 1080.0
-margin_bottom = 1760.0
+margin_bottom = 1723.0
+rect_pivot_offset = Vector2( 540, 90 )
 mouse_filter = 1
-custom_styles/focus = SubResource( 4 )
+custom_styles/focus = SubResource( 3 )
 custom_fonts/font = ExtResource( 8 )
 text = "Back"
 flat = true
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="VBoxContainer" parent="Main/2ndLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 50
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Main/2ndLayer/Settings"]
+margin_top = 142.0
+margin_right = 1080.0
+margin_bottom = 375.0
+custom_fonts/font = ExtResource( 4 )
+text = "Settings"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator1" type="HSeparator" parent="Main/2ndLayer/Settings"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 425.0
+margin_right = 1080.0
+margin_bottom = 435.0
+custom_constants/separation = 10
+
+[node name="Operations" type="Label" parent="Main/2ndLayer/Settings"]
+margin_top = 485.0
+margin_right = 1080.0
+margin_bottom = 615.0
+custom_fonts/font = ExtResource( 15 )
+text = "Operations:"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OperationsName" type="HBoxContainer" parent="Main/2ndLayer/Settings"]
+margin_top = 665.0
+margin_right = 1080.0
+margin_bottom = 865.0
+custom_constants/separation = 30
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Operations1" type="Label" parent="Main/2ndLayer/Settings/OperationsName"]
+margin_left = 85.0
+margin_right = 290.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 205, 200 )
+custom_fonts/font = ExtResource( 8 )
+text = "+"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Operations2" type="Label" parent="Main/2ndLayer/Settings/OperationsName"]
+margin_left = 320.0
+margin_top = 12.0
+margin_right = 525.0
+margin_bottom = 187.0
+rect_min_size = Vector2( 205, 0 )
+custom_fonts/font = ExtResource( 8 )
+text = "-"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Operations3" type="Label" parent="Main/2ndLayer/Settings/OperationsName"]
+margin_left = 555.0
+margin_top = 12.0
+margin_right = 760.0
+margin_bottom = 187.0
+rect_min_size = Vector2( 205, 0 )
+custom_fonts/font = ExtResource( 8 )
+text = "x"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Operations4" type="Label" parent="Main/2ndLayer/Settings/OperationsName"]
+margin_left = 790.0
+margin_top = 12.0
+margin_right = 995.0
+margin_bottom = 187.0
+rect_min_size = Vector2( 205, 0 )
+custom_fonts/font = ExtResource( 8 )
+text = "/"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OperationsCheckbox" type="HBoxContainer" parent="Main/2ndLayer/Settings"]
+margin_top = 915.0
+margin_right = 1080.0
+margin_bottom = 1115.0
+custom_constants/separation = 30
+alignment = 1
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button1" type="Button" parent="Main/2ndLayer/Settings/OperationsCheckbox"]
+margin_left = 85.0
+margin_right = 290.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 205, 200 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 8 )
+toggle_mode = true
+pressed = true
+text = "[ ]"
+flat = true
+script = ExtResource( 14 )
+
+[node name="Button2" type="Button" parent="Main/2ndLayer/Settings/OperationsCheckbox"]
+margin_left = 320.0
+margin_right = 525.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 205, 200 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 8 )
+toggle_mode = true
+pressed = true
+text = "[ ]"
+flat = true
+script = ExtResource( 14 )
+
+[node name="Button3" type="Button" parent="Main/2ndLayer/Settings/OperationsCheckbox"]
+margin_left = 555.0
+margin_right = 760.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 205, 200 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 8 )
+toggle_mode = true
+pressed = true
+text = "[ ]"
+flat = true
+script = ExtResource( 14 )
+
+[node name="Button4" type="Button" parent="Main/2ndLayer/Settings/OperationsCheckbox"]
+margin_left = 790.0
+margin_right = 995.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 205, 200 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 8 )
+toggle_mode = true
+pressed = true
+text = "[ ]"
+flat = true
+script = ExtResource( 14 )
+
+[node name="Music" type="HBoxContainer" parent="Main/2ndLayer/Settings"]
+margin_top = 1165.0
+margin_right = 1080.0
+margin_bottom = 1301.0
+custom_constants/separation = 50
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button1" type="Button" parent="Main/2ndLayer/Settings/Music"]
+margin_left = 240.0
+margin_right = 440.0
+margin_bottom = 136.0
+rect_min_size = Vector2( 200, 100 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 15 )
+toggle_mode = true
+pressed = true
+text = "[ ]"
+flat = true
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator" type="VSeparator" parent="Main/2ndLayer/Settings/Music"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 462.0
+margin_right = 512.0
+margin_bottom = 100.0
+custom_constants/separation = 50
+
+[node name="Title" type="Label" parent="Main/2ndLayer/Settings/Music"]
+margin_left = 490.0
+margin_top = 3.0
+margin_right = 840.0
+margin_bottom = 133.0
+custom_fonts/font = ExtResource( 15 )
+text = "Music"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFX" type="HBoxContainer" parent="Main/2ndLayer/Settings"]
+margin_top = 1351.0
+margin_right = 1080.0
+margin_bottom = 1487.0
+custom_constants/separation = 50
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button1" type="Button" parent="Main/2ndLayer/Settings/SFX"]
+margin_left = 304.0
+margin_right = 504.0
+margin_bottom = 136.0
+rect_min_size = Vector2( 200, 100 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = ExtResource( 15 )
+toggle_mode = true
+pressed = true
+text = "[ ]"
+flat = true
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator" type="VSeparator" parent="Main/2ndLayer/Settings/SFX"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 462.0
+margin_right = 512.0
+margin_bottom = 100.0
+custom_constants/separation = 50
+
+[node name="Title" type="Label" parent="Main/2ndLayer/Settings/SFX"]
+margin_left = 554.0
+margin_top = 3.0
+margin_right = 775.0
+margin_bottom = 133.0
+custom_fonts/font = ExtResource( 15 )
+text = "SFX"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Version" type="Label" parent="Main/2ndLayer/Settings"]
+visible = false
+margin_top = 1000.0
+margin_right = 1080.0
+margin_bottom = 1159.0
+custom_fonts/font = ExtResource( 9 )
+text = "Version:
+	0.3.2"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator3" type="HSeparator" parent="Main/2ndLayer/Settings"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 1537.0
+margin_right = 1080.0
+margin_bottom = 1547.0
+custom_constants/separation = 10
+
+[node name="Back" type="Button" parent="Main/2ndLayer/Settings"]
+margin_top = 1597.0
+margin_right = 1080.0
+margin_bottom = 1778.0
+rect_pivot_offset = Vector2( 540, 90 )
+mouse_filter = 1
+custom_styles/focus = SubResource( 3 )
+custom_fonts/font = ExtResource( 8 )
+text = "Back"
+flat = true
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighScores" type="VBoxContainer" parent="Main/2ndLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 50
+alignment = 1
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Main/2ndLayer/HighScores"]
+margin_top = 198.0
+margin_right = 1080.0
+margin_bottom = 584.0
+rect_min_size = Vector2( 1080, 0 )
+custom_fonts/font = ExtResource( 4 )
+custom_constants/line_spacing = -80
+text = "High
+Scores"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator1" type="HSeparator" parent="Main/2ndLayer/HighScores"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 634.0
+margin_right = 1080.0
+margin_bottom = 834.0
+custom_constants/separation = 200
+
+[node name="Row" type="HBoxContainer" parent="Main/2ndLayer/HighScores"]
+margin_top = 884.0
+margin_right = 1080.0
+margin_bottom = 1290.0
+rect_min_size = Vector2( 1080, 400 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Names" type="VBoxContainer" parent="Main/2ndLayer/HighScores/Row"]
+visible = false
+margin_left = 204.0
+margin_right = 604.0
+margin_bottom = 406.0
+rect_min_size = Vector2( 400, 0 )
+
+[node name="Name1" type="Label" parent="Main/2ndLayer/HighScores/Row/Names"]
+margin_right = 400.0
+margin_bottom = 78.0
+custom_fonts/font = ExtResource( 9 )
+text = "DDD"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name2" type="Label" parent="Main/2ndLayer/HighScores/Row/Names"]
+margin_top = 82.0
+margin_right = 400.0
+margin_bottom = 160.0
+custom_fonts/font = ExtResource( 9 )
+text = "DDD"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name3" type="Label" parent="Main/2ndLayer/HighScores/Row/Names"]
+margin_top = 164.0
+margin_right = 400.0
+margin_bottom = 242.0
+custom_fonts/font = ExtResource( 9 )
+text = "DDD"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name4" type="Label" parent="Main/2ndLayer/HighScores/Row/Names"]
+margin_top = 246.0
+margin_right = 400.0
+margin_bottom = 324.0
+custom_fonts/font = ExtResource( 9 )
+text = "DDD"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name5" type="Label" parent="Main/2ndLayer/HighScores/Row/Names"]
+margin_top = 328.0
+margin_right = 400.0
+margin_bottom = 406.0
+custom_fonts/font = ExtResource( 9 )
+text = "DDD"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Positions" type="VBoxContainer" parent="Main/2ndLayer/HighScores/Row"]
+margin_left = 78.0
+margin_right = 518.0
+margin_bottom = 406.0
+rect_min_size = Vector2( 440, 0 )
+alignment = 1
+
+[node name="Position1" type="Label" parent="Main/2ndLayer/HighScores/Row/Positions"]
+margin_right = 440.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 150, 78 )
+custom_fonts/font = ExtResource( 9 )
+text = "1st"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Position2" type="Label" parent="Main/2ndLayer/HighScores/Row/Positions"]
+margin_top = 82.0
+margin_right = 440.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 150, 78 )
+custom_fonts/font = ExtResource( 9 )
+text = "2nd"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Position3" type="Label" parent="Main/2ndLayer/HighScores/Row/Positions"]
+margin_top = 164.0
+margin_right = 440.0
+margin_bottom = 242.0
+rect_min_size = Vector2( 150, 78 )
+custom_fonts/font = ExtResource( 9 )
+text = "3rd"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Position4" type="Label" parent="Main/2ndLayer/HighScores/Row/Positions"]
+margin_top = 246.0
+margin_right = 440.0
+margin_bottom = 324.0
+rect_min_size = Vector2( 150, 78 )
+custom_fonts/font = ExtResource( 9 )
+text = "4th"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Position5" type="Label" parent="Main/2ndLayer/HighScores/Row/Positions"]
+margin_top = 328.0
+margin_right = 440.0
+margin_bottom = 406.0
+rect_min_size = Vector2( 150, 78 )
+custom_fonts/font = ExtResource( 9 )
+text = "5th"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Scores" type="VBoxContainer" parent="Main/2ndLayer/HighScores/Row"]
+margin_left = 522.0
+margin_right = 1002.0
+margin_bottom = 406.0
+rect_min_size = Vector2( 480, 0 )
+alignment = 1
+
+[node name="Score1" type="Label" parent="Main/2ndLayer/HighScores/Row/Scores"]
+margin_right = 480.0
+margin_bottom = 78.0
+custom_fonts/font = ExtResource( 9 )
+text = "3340333"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score2" type="Label" parent="Main/2ndLayer/HighScores/Row/Scores"]
+margin_top = 82.0
+margin_right = 480.0
+margin_bottom = 160.0
+custom_fonts/font = ExtResource( 9 )
+text = "334023"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score3" type="Label" parent="Main/2ndLayer/HighScores/Row/Scores"]
+margin_top = 164.0
+margin_right = 480.0
+margin_bottom = 242.0
+custom_fonts/font = ExtResource( 9 )
+text = "33402"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score4" type="Label" parent="Main/2ndLayer/HighScores/Row/Scores"]
+margin_top = 246.0
+margin_right = 480.0
+margin_bottom = 324.0
+custom_fonts/font = ExtResource( 9 )
+text = "33410"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score5" type="Label" parent="Main/2ndLayer/HighScores/Row/Scores"]
+margin_top = 328.0
+margin_right = 480.0
+margin_bottom = 406.0
+custom_fonts/font = ExtResource( 9 )
+text = "334"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator3" type="HSeparator" parent="Main/2ndLayer/HighScores"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 1340.0
+margin_right = 1080.0
+margin_bottom = 1490.0
+custom_constants/separation = 150
+
+[node name="Back" type="Button" parent="Main/2ndLayer/HighScores"]
+margin_top = 1540.0
+margin_right = 1080.0
+margin_bottom = 1721.0
+rect_pivot_offset = Vector2( 540, 90 )
+mouse_filter = 1
+custom_styles/focus = SubResource( 3 )
+custom_fonts/font = ExtResource( 8 )
+text = "Back"
+flat = true
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Instructions" type="VBoxContainer" parent="Main/2ndLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 50
@@ -326,9 +959,9 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="Main/2ndLayer/Instructions"]
-margin_top = 365.0
+margin_top = 255.0
 margin_right = 1080.0
-margin_bottom = 598.0
+margin_bottom = 488.0
 custom_fonts/font = ExtResource( 4 )
 text = "How To"
 align = 1
@@ -339,15 +972,15 @@ __meta__ = {
 
 [node name="HSeparator1" type="HSeparator" parent="Main/2ndLayer/Instructions"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 648.0
+margin_top = 538.0
 margin_right = 1080.0
-margin_bottom = 698.0
-custom_constants/separation = 50
+margin_bottom = 688.0
+custom_constants/separation = 150
 
 [node name="Solve" type="Label" parent="Main/2ndLayer/Instructions"]
-margin_top = 748.0
+margin_top = 738.0
 margin_right = 1080.0
-margin_bottom = 826.0
+margin_bottom = 816.0
 custom_fonts/font = ExtResource( 9 )
 text = "Solve the equation!"
 align = 1
@@ -358,9 +991,9 @@ __meta__ = {
 }
 
 [node name="Press" type="Label" parent="Main/2ndLayer/Instructions"]
-margin_top = 876.0
+margin_top = 866.0
 margin_right = 1080.0
-margin_bottom = 1035.0
+margin_bottom = 1025.0
 custom_fonts/font = ExtResource( 9 )
 text = "Press the correct
 answer!"
@@ -372,9 +1005,9 @@ __meta__ = {
 }
 
 [node name="Answer" type="Label" parent="Main/2ndLayer/Instructions"]
-margin_top = 1085.0
+margin_top = 1075.0
 margin_right = 1080.0
-margin_bottom = 1244.0
+margin_bottom = 1234.0
 custom_fonts/font = ExtResource( 9 )
 text = "Do as many as you can before time runs out!"
 align = 1
@@ -386,20 +1019,22 @@ __meta__ = {
 
 [node name="HSeparator3" type="HSeparator" parent="Main/2ndLayer/Instructions"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 1294.0
+margin_top = 1284.0
 margin_right = 1080.0
-margin_bottom = 1324.0
-custom_constants/separation = 30
+margin_bottom = 1434.0
+custom_constants/separation = 150
 
 [node name="Back" type="Button" parent="Main/2ndLayer/Instructions"]
-margin_top = 1374.0
+margin_top = 1484.0
 margin_right = 1080.0
-margin_bottom = 1555.0
+margin_bottom = 1665.0
+rect_pivot_offset = Vector2( 540, 90 )
 mouse_filter = 1
-custom_styles/focus = SubResource( 4 )
+custom_styles/focus = SubResource( 3 )
 custom_fonts/font = ExtResource( 8 )
 text = "Back"
 flat = true
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -428,12 +1063,17 @@ __meta__ = {
 [node name="Audio" type="Node" parent="."]
 
 [node name="Theme" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 11 )
 
 [connection signal="button_pressed" from="Main/1stLayer/Buttons" to="Main/2ndLayer" method="_on_Buttons_button_pressed"]
 [connection signal="move_board" from="Main/1stLayer/Buttons" to="." method="move_board"]
 [connection signal="pressed" from="Main/1stLayer/Buttons/Start" to="Main/1stLayer/Buttons" method="_on_Start_pressed"]
 [connection signal="pressed" from="Main/1stLayer/Buttons/Instructions" to="Main/1stLayer/Buttons" method="_on_Instructions_pressed"]
+[connection signal="pressed" from="Main/1stLayer/Buttons/Settings" to="Main/1stLayer/Buttons" method="_on_Settings_pressed"]
+[connection signal="pressed" from="Main/1stLayer/Buttons/HighScores" to="Main/1stLayer/Buttons" method="_on_HighScores_pressed"]
 [connection signal="pressed" from="Main/1stLayer/Buttons/Credits" to="Main/1stLayer/Buttons" method="_on_Credits_pressed"]
 [connection signal="move_board" from="Main/2ndLayer" to="." method="move_board"]
 [connection signal="pressed" from="Main/2ndLayer/Credits/Back" to="Main/2ndLayer" method="_on_Back_pressed"]
+[connection signal="pressed" from="Main/2ndLayer/Settings/Back" to="Main/2ndLayer" method="_on_Back_pressed"]
+[connection signal="pressed" from="Main/2ndLayer/HighScores/Back" to="Main/2ndLayer" method="_on_Back_pressed"]
 [connection signal="pressed" from="Main/2ndLayer/Instructions/Back" to="Main/2ndLayer" method="_on_Back_pressed"]

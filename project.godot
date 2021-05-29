@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/UI/ButtonsHandler.gd"
 }, {
+"base": "Button",
+"class": "CheckMenuButton",
+"language": "GDScript",
+"path": "res://src/menus/CheckButton.gd"
+}, {
 "base": "Control",
 "class": "ChoicesHandler",
 "language": "GDScript",
@@ -24,10 +29,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/handlers/EquationHandler.gd"
 }, {
+"base": "Control",
+"class": "GameOverMenu",
+"language": "GDScript",
+"path": "res://src/menus/GameOverMenu.gd"
+}, {
+"base": "VBoxContainer",
+"class": "HighScoresMenu",
+"language": "GDScript",
+"path": "res://src/menus/HighScoresMenu.gd"
+}, {
 "base": "Node",
 "class": "Level",
 "language": "GDScript",
 "path": "res://src/levels/Level.gd"
+}, {
+"base": "Control",
+"class": "LevelUI",
+"language": "GDScript",
+"path": "res://src/UI/LevelUI.gd"
+}, {
+"base": "Control",
+"class": "SecondLayerMenu",
+"language": "GDScript",
+"path": "res://src/menus/2ndLayerMenu.gd"
 }, {
 "base": "TextureProgress",
 "class": "TimerBar",
@@ -36,9 +61,14 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ButtonsHandler": "",
+"CheckMenuButton": "",
 "ChoicesHandler": "",
 "EquationHandler": "",
+"GameOverMenu": "",
+"HighScoresMenu": "",
 "Level": "",
+"LevelUI": "",
+"SecondLayerMenu": "",
 "TimerBar": ""
 }
 
@@ -51,13 +81,15 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://src/autoloads/Global.gd"
+HighScores="*res://src/autoloads/HighScores.gd"
+Settings="*res://src/autoloads/Settings.gd"
 
 [display]
 
 window/size/width=1080
 window/size/height=1920
 window/size/test_width=360
-window/size/test_height=800
+window/size/test_height=640
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 

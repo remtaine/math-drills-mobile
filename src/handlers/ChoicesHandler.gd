@@ -39,8 +39,8 @@ func _on_EquationHandler_equation_set(a, o) -> void:
 	change_choices_text(generate_choices(a, o))
 
 
-func generate_choices(answer, o) -> Array:
-	self.answer = answer
+func generate_choices(ans, o) -> Array:
+	answer = ans
 	randomize()
 	var a = 0
 	var b = []

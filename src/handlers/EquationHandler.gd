@@ -3,8 +3,15 @@ extends HBoxContainer
 
 signal equation_set(answer, operation)
 
+const OPERATIONS = {
+	"add" : "+",
+	"subtract" : "-",
+	"mutiply" : "x",
+	"divide" : "/",
+		
+}
 var answer := 144
-var operation := "x"
+var operation : String = OPERATIONS.mutiply
 var num_ceil := 9
 var num_flr := 2
 
@@ -16,19 +23,45 @@ func setup_equation(make_new_equation := true) -> void:
 	#TODO add #s and shiz
 	if make_new_equation:
 		randomize()
-		var a = answer
-		var b = 1
+		var a
+		var b
+		var c
 		var times = 0
-		while answer == a * b or times > 3:
-			a = randi() % (num_ceil-num_flr) + num_flr
-			b = randi() % (num_ceil-num_flr) + num_flr
-			
-			times += 1
-			
+		
+		match 0:#randi() % 4:
+			0: #ie add
+				operation = OPERATIONS.add
+			1: #ie subtract
+				operation = OPERATIONS.subtract
+			2: #ie multiply
+				operation = OPERATIONS.mutiply
+				a = answer
+				b = 1
+				while answer == a * b or times > 3:
+					a = randi() % (num_ceil-num_flr) + num_flr
+					b = randi() % (num_ceil-num_flr) + num_flr
+					
+					times += 1
+					
+				answer = a * b
+			3: #ie divide
+				operation = OPERATIONS.divide
+				a = answer
+				b = 1
+				while answer == a * b or times > 3:
+					a = randi() % (num_ceil-num_flr) + num_flr
+					b = randi() % (num_ceil-num_flr) + num_flr
+					
+					times += 1
+					
+				answer = a * b
+				c = a
+				a = answer
+				answer = c
+				
 		$Num1.text = String(a)
 		$Symbol.text = operation
 		$Num2.text = String(b)
-		answer = a * b
 		
 	emit_signal("equation_set", answer, operation)
 
@@ -42,4 +75,3 @@ func _on_Score_level_up() -> void:
 	num_ceil += 1
 	if num_ceil % 3 == 0:
 		num_flr += 1
-	print("nums go from ", num_flr, " to ", num_ceil, " now")

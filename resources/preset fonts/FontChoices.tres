@@ -3,5 +3,5 @@
 [ext_resource path="res://fonts/Chalktastic.otf" type="DynamicFontData" id=1]
 
 [resource]
-size = 160
+size = 130
 font_data = ExtResource( 1 )
