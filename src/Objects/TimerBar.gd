@@ -35,7 +35,7 @@ func _on_EquationHandler_equation_set(_answer, _operation) -> void:
 
 func _on_Score_level_up() -> void:
 	minus_per_second *= 1.05
-	print("MPS is now ", minus_per_second)
+#	print("MPS is now ", minus_per_second)
 #	if $Timer.wait_time > 0.12:
 #		$Timer.wait_time -= 0.006
 #	elif $Timer.wait_time > 0.09:
