@@ -1,6 +1,6 @@
 extends Node
 
-var file_high_scores = "user://high_scores.txt"
+var file_high_scores = "user://high_scores"
 var high_scores setget set_high_scores
 
 signal scores_updated
