@@ -1,7 +1,7 @@
 class_name ChoicesHandler
 extends Control
 
-var spacing = 5
+var spacing := 5
 
 var answer := -1
 var operation := "+"
@@ -39,17 +39,26 @@ func _on_EquationHandler_equation_set(a, o) -> void:
 	change_choices_text(generate_choices(a, o))
 
 
-func generate_choices(ans, o) -> Array:
+func generate_choices(ans, _o) -> Array:
 	answer = ans
 	randomize()
 	var a = 0
 	var b = []
-	spacing = int(answer/5)
-	if spacing <= 0:
-		spacing = 2
+	spacing = max(2, int(answer/5))
 #	match 3:
-	match randi() % 4:
-		0: # 1st is right
+	var choice_pos := 4
+	
+	if answer % spacing < 1:
+		choice_pos = 1
+	elif answer % spacing < 2:
+		choice_pos = 2
+	elif answer % spacing < 3:
+		choice_pos = 3
+	#else it stays at 4
+		
+#	answer 
+	match randi() % choice_pos:
+		0: # 1st is right aka the smallest
 			b.append(answer)
 			for i in 3:
 				while true:
@@ -57,7 +66,7 @@ func generate_choices(ans, o) -> Array:
 					if not a in b:
 						b.append(a)
 						break
-		1:	#2nd is right
+		1:	#2nd is right aka 2nd smallest
 			b.append(answer - (randi() % spacing) - 1)
 			b.append(answer)
 			for i in 2:
@@ -66,7 +75,7 @@ func generate_choices(ans, o) -> Array:
 					if not a in b:
 						b.append(a)
 						break
-		2: #3rd is right
+		2: #3rd is right aka 2nd largest
 			for i in 2:
 				while true:
 					a = answer - (randi() % ((i + 1) * spacing)) - 1
@@ -75,7 +84,7 @@ func generate_choices(ans, o) -> Array:
 						break
 			b.append(answer)
 			b.append(answer + (randi() % spacing) + 1)
-		3: #4th is right
+		3: #4th is right aka largest
 			for i in 3:
 				while true:
 					a = answer - (randi() % ((i + 1) * spacing)) - 1
@@ -84,6 +93,7 @@ func generate_choices(ans, o) -> Array:
 						break
 			b.append(answer)
 	return b
+
 
 func change_choices_text(a: Array) -> void:
 	var b = shuffle_list(a)
@@ -96,7 +106,7 @@ func change_choices_text(a: Array) -> void:
 func shuffle_list(list) -> Array:
 	var shuffled_list = [] 
 	var index_list = range(list.size())
-	for i in range(list.size()):
+	for _i in range(list.size()):
 		var x = randi() % index_list.size()
 		shuffled_list.append(list[index_list[x]])
 		index_list.remove(x)
