@@ -10,8 +10,9 @@ func _ready() -> void:
 
 
 func _on_Start_pressed() -> void:
-	var _error = get_tree().change_scene(game_path)
-
+#	var _error = get_tree().change_scene(game_path)
+	ScreenTransition.change_scene(game_path)
+#	pass
 
 func _on_Instructions_pressed() -> void:
 	emit_signal("move_board", Vector2.RIGHT)
