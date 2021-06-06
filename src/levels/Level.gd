@@ -8,6 +8,11 @@ export var game_over_path := "res://src/menus/GameOverMenu.tscn"
 func _ready():
 	Global.current_score = 0
 
+
+func activate():
+	$Main/Question/TimerBar.set_process(true)
+
+
 func _unhandled_input(event):
 	if event.is_action_pressed("reset"):
 		var _status = get_tree().reload_current_scene()
@@ -16,8 +21,8 @@ func _unhandled_input(event):
 
 
 func _on_TimerBar_times_up() -> void:
-	var _error = get_tree().change_scene(game_over_path)
-
+#	var _error = get_tree().change_scene(game_over_path)
+	ScreenTransition.change_scene(game_over_path, 1.5, false)
 
 func _on_PauseButton_pressed() -> void:
 	$Audio/Theme.stream_paused = true
@@ -31,7 +36,8 @@ func _on_Back_pressed() -> void:
 
 
 func _on_Menu_pressed() -> void:
-	var _status = get_tree().change_scene(menu_path)
+#	var _status = get_tree().change_scene(menu_path)
+	ScreenTransition.change_scene(menu_path)
 
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
