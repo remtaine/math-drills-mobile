@@ -7,7 +7,6 @@ func _ready() -> void:
 	var _error = self.connect("toggled", self, "check")
 	if pressed:
 		self.text = "[|]"
-#	print(self.name.right(self.name.length() - 1))
 	
 func check(_val) -> void:
 	if self.text == "[ ]":
@@ -22,4 +21,3 @@ func check(_val) -> void:
 func set_operation(val: bool) -> void:
 	if is_operator:
 		Settings.has_operations[int(self.name.right(self.name.length() - 1)) - 1] = val
-		print("Now operations" + String(int(self.name.right(self.name.length() - 1)) - 1) + " is changed")
