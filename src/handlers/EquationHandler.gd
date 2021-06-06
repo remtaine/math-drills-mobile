@@ -12,10 +12,14 @@ const OPERATIONS = {
 }
 var answer := 144
 var operation : String = OPERATIONS.mutiply
+var possible_ops := []
 var num_ceil := [12,12,9,9]
 var num_flr := [6,6,2,3]
 
 func _ready() -> void:
+	for i in Settings.has_operations.size():
+		if Settings.has_operations[i]:
+			possible_ops.append(i)
 	setup_equation()
 
 
@@ -28,7 +32,7 @@ func setup_equation(make_new_equation := true) -> void:
 		var c
 		var times = 0
 		
-		var chosen_op := randi() % 4
+		var chosen_op : int = possible_ops[randi() % possible_ops.size()] #randi() % 4
 		match chosen_op:
 			0: #ie add
 				operation = OPERATIONS.add
