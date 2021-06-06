@@ -83,6 +83,7 @@ config/icon="res://2021-05-23 Math Drills Square v1.png"
 Global="*res://src/autoloads/Global.gd"
 HighScores="*res://src/autoloads/HighScores.gd"
 Settings="*res://src/autoloads/Settings.gd"
+ScreenTransition="*res://src/autoloads/ScreenTransition.tscn"
 
 [display]
 
@@ -90,6 +91,7 @@ window/size/width=1080
 window/size/height=1920
 window/size/test_width=360
 window/size/test_height=640
+window/handheld/orientation="portrait"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
