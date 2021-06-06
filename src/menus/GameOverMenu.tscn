@@ -325,9 +325,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="UILayer2" type="CanvasLayer" parent="."]
+layer = 10
 
-[node name="UI" type="Control" parent="UILayer"]
+[node name="UI" type="Control" parent="UILayer2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -335,7 +336,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Frame" type="TextureRect" parent="UILayer/UI"]
+[node name="Frame" type="TextureRect" parent="UILayer2/UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
